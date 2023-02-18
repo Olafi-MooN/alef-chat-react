@@ -1,0 +1,32 @@
+
+.chat-block-row { 
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.chat-block-row.reverse {
+  align-items: flex-end;
+}
+
+.chat-block-row.reverse .chat-block {
+  background-color: var(--green-dark);
+}
+
+.chat-name-date-text  {
+  color: white;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.chat-block { 
+  color: white;
+  font-weight: 400;
+  background-color: var(--purple);
+  padding: 14px;
+  border-radius: 8px;
+  max-width: 60%;
+}

@@ -1,5 +1,6 @@
 import { UsersModel } from "../../../../@types/users";
 import { UserLogged } from "../../../localStorage";
+import "./chat-block-row.style.css";
 
 interface IChatBlockRowProps {
 	user: UsersModel.User;

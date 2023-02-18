@@ -1,16 +1,14 @@
-import React from "react";
-import Chat from "../../components/chat";
 import { ProfileChat } from "../../components/chat/profile-chat/profile-chat";
 import close2x from "../../assets/images/close@2x.svg";
-import sendIcon from "../../assets/images/send.svg";
-
-import "./home.style.css";
-import Dialog from "../../components/dialog";
 import { SettingsDialog } from "../../components/settings-dialog/settings-dialog";
 import { HomeFunctions } from "./home.functions";
 import { ProfileList } from "../../components/profile-list/profile-list";
 import { UserLogged } from "../../localStorage";
 import { UsersModel } from "../../../@types/users";
+import { ChatBlockRow } from "../../components/chat/chat-block-row/chat-block-row";
+import { InputChat } from "../../components/chat/input-chat/input-chat";
+
+import "./home.style.css";
 
 const Home = () => {
 	const {
@@ -18,6 +16,11 @@ const Home = () => {
 		openParticipants,
 		openSettings,
 		actualUserInChat,
+		conversationList,
+		chatBodyRef,
+		chatTextValue,
+		onSubmit,
+		setChatTextValue,
 		setActualUserInChat,
 		setOpenSettings,
 		setOpenParticipants,
@@ -42,7 +45,7 @@ const Home = () => {
 					<span className="profile-image-icon">
 						<img
 							className="profile-image-img"
-							src=""
+							src={UserLogged?.info?.image}
 							alt="profile"
 						/>
 					</span>
@@ -101,26 +104,23 @@ const Home = () => {
 									</object>
 								</button>
 							</div>
-							<div className="chat-body">
-								<ChatBlockRow />
+							<div className="chat-body" ref={chatBodyRef}>
+								{conversationList?.messages?.map(
+									(message, i) => (
+										<ChatBlockRow
+											key={i}
+											message={message?.message}
+											user={message?.user}
+										/>
+									)
+								)}
 							</div>
 							<div className="chat-footer">
-								<div className="container-chat-form">
-									<input
-										className="chat-input"
-										type="text"
-										placeholder="Digite uma mensagem"
-									/>
-									<button className="chat-send-button">
-										<object
-											data={sendIcon}
-											width="30"
-											height="30"
-										>
-											{" "}
-										</object>
-									</button>
-								</div>
+								<InputChat
+									onSubmit={onSubmit}
+									setValue={setChatTextValue}
+									value={chatTextValue}
+								/>
 							</div>
 						</>
 					)}

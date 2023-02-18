@@ -1,7 +1,7 @@
 namespace UsersModel {
 
   export interface User {
-    image: string;
+    image?: string;
     name: string;
     uuid: string;
   }

@@ -1,0 +1,28 @@
+
+.profile-image { 
+  height: 48px;
+  width: 48px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  color: white;
+  width:calc(100% - 60px);
+  padding: 0 20px;
+}
+
+.profile-status { 
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--green)
+}
+
+.profile-status-circle {
+  background-color: var(--green);
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}

@@ -9,6 +9,7 @@ interface IProfileListProps {
 
 const ProfileList = (props: IProfileListProps) => {
 	const { user, actualUserInChat, setActualUserInChat } = props;
+
 	return (
 		<div
 			className={`profile-content-users ${

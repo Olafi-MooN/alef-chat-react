@@ -1,5 +1,5 @@
 import { UsersModel } from "../../../../@types/users";
-
+import "./profile-chat.style.css";
 interface IProfileChatProps {
 	user: UsersModel.User;
 }
