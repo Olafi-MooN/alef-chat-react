@@ -10,7 +10,8 @@
   --bg-color-sub: #282843;
   --bg-modal: #282843;
   --white: #FFFFFF;
-  --black-opacity: #000000c0
+  --black-opacity: #000000c0;
+  --list-active: #145556;
 }
 
 * { 

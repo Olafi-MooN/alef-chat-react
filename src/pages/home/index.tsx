@@ -8,15 +8,33 @@ import "./home.style.css";
 import Dialog from "../../components/dialog";
 import { SettingsDialog } from "../../components/settings-dialog/settings-dialog";
 import { HomeFunctions } from "./home.functions";
+import { ProfileList } from "../../components/profile-list/profile-list";
+import { UserLogged } from "../../localStorage";
+import { UsersModel } from "../../../@types/users";
 
 const Home = () => {
-	const { openSettings, setOpenSettings } = HomeFunctions();
+	const {
+		participantsList,
+		openParticipants,
+		openSettings,
+		actualUserInChat,
+		setActualUserInChat,
+		setOpenSettings,
+		setOpenParticipants,
+	} = HomeFunctions();
 
 	return (
-		<div className="container-home">
+		<div
+			className={`container-home ${
+				openParticipants ? "no-active-participants" : ""
+			}`}
+		>
 			<div className="toolbar">
 				<div className="toolbar-top">
-					<span className="material-symbols-outlined icons-config toolbar-icons menu-btn">
+					<span
+						className="material-symbols-outlined icons-config toolbar-icons menu-btn"
+						onClick={() => setOpenParticipants((prev) => !prev)}
+					>
 						menu
 					</span>
 				</div>
@@ -36,46 +54,76 @@ const Home = () => {
 					</span>
 				</div>
 			</div>
-			<div className="content-users">
+			<div
+				className={`content-users ${
+					openParticipants ? "no-active" : ""
+				}`}
+			>
 				<div className="content-users-title">
 					<h1 className="title">Participantes Ativos</h1>
 				</div>
-				<div className="content-users-list"></div>
+				<div className="content-users-list">
+					{participantsList?.list
+						?.filter((user) => user.uuid !== UserLogged.info?.uuid)
+						.map((user) => (
+							<ProfileList
+								key={user.uuid}
+								user={user}
+								actualUserInChat={actualUserInChat}
+								setActualUserInChat={setActualUserInChat}
+							/>
+						))}
+				</div>
 			</div>
 			<div className="content-chat">
 				<div className="container-chat">
-					<div className="chat-header">
-						<div className="profile">
-							<ProfileChat />
-						</div>
-						<button className="close">
-							<object
-								data={close2x}
-								width="30"
-								height="30"
-								style={{ pointerEvents: "none" }}
-							>
-								{" "}
-							</object>
-						</button>
-					</div>
-					<div className="chat-body">
-						<Chat />
-					</div>
-					<div className="chat-footer">
-						<div className="container-chat-form">
-							<input
-								className="chat-input"
-								type="text"
-								placeholder="Digite uma mensagem"
-							/>
-							<button className="chat-send-button">
-								<object data={sendIcon} width="30" height="30">
-									{" "}
-								</object>
-							</button>
-						</div>
-					</div>
+					{actualUserInChat?.uuid && (
+						<>
+							<div className="chat-header">
+								<div className="profile">
+									<ProfileChat user={actualUserInChat} />
+								</div>
+								<button
+									className="close"
+									onClick={() =>
+										setActualUserInChat(
+											{} as UsersModel.User
+										)
+									}
+								>
+									<object
+										data={close2x}
+										width="30"
+										height="30"
+										style={{ pointerEvents: "none" }}
+									>
+										{" "}
+									</object>
+								</button>
+							</div>
+							<div className="chat-body">
+								<ChatBlockRow />
+							</div>
+							<div className="chat-footer">
+								<div className="container-chat-form">
+									<input
+										className="chat-input"
+										type="text"
+										placeholder="Digite uma mensagem"
+									/>
+									<button className="chat-send-button">
+										<object
+											data={sendIcon}
+											width="30"
+											height="30"
+										>
+											{" "}
+										</object>
+									</button>
+								</div>
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 			{openSettings && (

@@ -1,4 +1,12 @@
-const ProfileChat = (user) => {
+import { UsersModel } from "../../../../@types/users";
+
+interface IProfileChatProps {
+	user: UsersModel.User;
+}
+
+const ProfileChat = (props: IProfileChatProps) => {
+	const { user } = props;
+
 	return (
 		<>
 			<img

@@ -1,3 +1,11 @@
+import { UsersModel } from "../../../../@types/users";
+import { UserLogged } from "../../../localStorage";
+
+interface IChatBlockRowProps {
+	user: UsersModel.User;
+	message: string;
+}
+
 const formatDate = (date) => {
 	return new Intl.DateTimeFormat("en-US", {
 		hour: "2-digit",
@@ -6,25 +14,22 @@ const formatDate = (date) => {
 	}).format(date);
 };
 
-const actualUser = () => {
-	return { uuid: "" };
-};
-
-const ChatBlockRow = (item) => {
+const ChatBlockRow = (props: IChatBlockRowProps) => {
+	const { user, message } = props;
 	return (
 		<div
 			className={`chat-block-row ${
-				item?.user?.uuid === actualUser().uuid ? "reverse" : ""
+				user?.uuid === UserLogged?.info?.uuid ? "reverse" : ""
 			}`}
 		>
 			<div className="chat-name-date-text">
-				{item?.user?.uuid === actualUser().uuid
+				{user?.uuid === UserLogged?.info?.uuid
 					? "Você"
-					: item?.user?.name ?? "username"}{" "}
+					: user?.name ?? "username"}{" "}
 				- {formatDate(new Date())}
 			</div>
 			<div className="chat-block">
-				{item?.message ?? "example message add in chat"}
+				{message ?? "example message add in chat"}
 			</div>
 		</div>
 	);
