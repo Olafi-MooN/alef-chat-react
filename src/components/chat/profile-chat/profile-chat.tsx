@@ -9,7 +9,12 @@ const ProfileChat = (props: IProfileChatProps) => {
 
 	return (
 		<>
-			<img className="profile-image" src={user?.image ?? `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 20)}.jpg`} alt="img-profile" data-profile={JSON.stringify(user)} />
+			<img
+				className="profile-image"
+				src={(user?.image as string) ?? `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 20)}.jpg`}
+				alt="img-profile"
+				data-profile={JSON.stringify(user)}
+			/>
 			<div className="profile-info">
 				<h1 className="profile-name">{user?.name ?? "username"}</h1>
 				<div className="profile-status">
