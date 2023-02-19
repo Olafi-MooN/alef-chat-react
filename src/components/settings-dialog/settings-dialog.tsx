@@ -2,9 +2,11 @@ import React from "react";
 import { DialogModel } from "../../../@types/dialog";
 import { UserLogged } from "../../localStorage";
 import Dialog from "../dialog";
+import { SettingDialogFunctions } from "./settings-dialog.functions";
 import "./settings-dialog.styles.css";
 
 const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
+	const { updateImageUser, actualImage } = SettingDialogFunctions();
 	return (
 		<>
 			<Dialog {...props}>
@@ -21,15 +23,15 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 							<div
 								className="image-config-edit"
 								style={{
-									backgroundImage: `url(${UserLogged.info.image})`,
+									backgroundImage: `url(${actualImage || UserLogged?.info()?.image})`,
 								}}
 							>
-								<input type="file" name="file" id="file" className="image-input-file" />
+								<input type="file" name="file" id="file" className="image-input-file" onChange={(e) => updateImageUser(e)} />
 								<label htmlFor="file" className="image-label-file">
 									Alterar imagem
 								</label>
 							</div>
-							<h4 className="title name-config">{UserLogged.info.name}</h4>
+							<h4 className="title name-config">{UserLogged.info().name}</h4>
 						</div>
 					</div>
 				</div>

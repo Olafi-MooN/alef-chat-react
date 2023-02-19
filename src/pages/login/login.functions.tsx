@@ -14,8 +14,9 @@ const LoginFunctions = () => {
 				uuid: v4(),
 				name: userCredential.user.displayName as string,
 				image: userCredential.user.photoURL as string,
-			}).then(() => {});
-			navigate("/");
+			}).then(() => {
+				navigate("/");
+			});
 		}
 	};
 

@@ -41,18 +41,23 @@ const verifyUserAuthentication = async () => {
 };
 
 const createUsers = async (path: string, data: UsersModel.User) => {
-	let itemDb = await database.getItemDb(path);
-	if (itemDb?.list) {
-		const findUser = itemDb.list.find((_) => _?.uid === auth?.currentUser?.uid);
-		if (!findUser?.uuid) {
-			itemDb.list.push(data);
+	return new Promise<void>(async (resolve, reject) => {
+		let itemDb = await database.getItemDb(path);
+		if (itemDb?.list) {
+			const findUser = itemDb.list.find((_) => _?.uid === auth?.currentUser?.uid);
+			if (!findUser?.uuid) {
+				itemDb.list.push(data);
+			} else {
+				data = findUser;
+			}
+		} else {
+			itemDb = { list: [] };
+			itemDb.list = [data];
 		}
-	} else {
-		itemDb = { list: [] };
-		itemDb.list = [data];
-	}
-	await database.createItem(path, itemDb);
-	localStorage.setItem("user", JSON.stringify(data));
+		const res = await database.createItem(path, itemDb);
+		localStorage.setItem("user", JSON.stringify(data));
+		resolve(res);
+	});
 };
 
 export { auth, signInWithGoogle, verifyUserAuthentication, createUsers };

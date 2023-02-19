@@ -1,6 +1,6 @@
 namespace UsersModel {
 	export interface User {
-		image?: string;
+		image?: string | ArrayBuffer | null;
 		name: string;
 		uuid: string;
 		uid?: string;

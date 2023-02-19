@@ -27,32 +27,34 @@ const HomeFunctions = () => {
 	}, [conversationList]);
 
 	const handleGetMessages = useCallback(() => {
-		if (actualUserInChat?.uuid) {
-			ChatFirebase.searchMessages(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info.uuid)}`).then((res) => {
+		if (actualUserInChat?.uuid && UserLogged?.info()?.uuid) {
+			ChatFirebase.searchMessages(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info().uuid)}`).then((res) => {
 				setConversationList(res);
 			});
 		}
-	}, [actualUserInChat.uuid]);
+	}, [actualUserInChat?.uuid, UserLogged?.info()?.uuid]);
 
 	useEffect(() => {
 		handleGetMessages();
 	}, [handleGetMessages]);
 
 	const onSubmit = (value: string) => {
-		ChatFirebase.insertMessageInChat(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info.uuid)}`, {
+		ChatFirebase.insertMessageInChat(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged?.info()?.uuid)}`, {
 			hour: String(new Date()),
 			message: value,
 			user: {
 				uid: auth?.currentUser?.uid,
-				uuid: UserLogged.info.uuid,
-				name: UserLogged.info.name,
+				uuid: UserLogged?.info()?.uuid,
+				name: UserLogged?.info()?.name,
 			},
 		});
 	};
 
 	useEffect(() => {
-		database.onListEventMessage(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info.uuid)}`, handleGetMessages);
-	}, [actualUserInChat]);
+		if (UserLogged?.info()?.uuid && actualUserInChat?.uuid) {
+			database.onListEventMessage(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info().uuid)}`, handleGetMessages);
+		}
+	}, [actualUserInChat?.uuid, UserLogged?.info()?.uuid]);
 
 	return {
 		openSettings,

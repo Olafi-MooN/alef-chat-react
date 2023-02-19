@@ -12,7 +12,7 @@ const ProfileList = (props: IProfileListProps) => {
 
 	return (
 		<div className={`profile-content-users ${actualUserInChat?.uuid === user?.uuid ? "active" : ""}`} id={user?.uuid} onClick={() => setActualUserInChat(user)}>
-			<img className="profile-image" src={user?.image} alt="img-profile" />
+			<img className="profile-image" src={user?.image as string} alt="img-profile" />
 			<div className="profile-info">
 				<h1 className="profile-name sm">{user?.name}</h1>
 				<div className="profile-status">
