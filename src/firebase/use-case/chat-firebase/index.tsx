@@ -3,10 +3,8 @@ import { MessagesModel } from "../../../../@types/messages";
 import { database } from "../../database";
 
 const ChatFirebase = {
-	getUsersList: async (path: string = "users") =>
-		await database.getItemDb(path),
-	searchMessages: async (path: string = "chat") =>
-		await database.getItemDb(path),
+	getUsersList: async (path: string = "users") => await database.getItemDb(path),
+	searchMessages: async (path: string = "chat") => await database.getItemDb(path),
 	insertMessageInChat: async (path: string, data: MessagesModel.IMessage) => {
 		const itemDb = await database.getItemDb(path);
 		if (itemDb) {

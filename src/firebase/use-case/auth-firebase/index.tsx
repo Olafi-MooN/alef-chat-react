@@ -1,12 +1,4 @@
-import {
-	getAuth,
-	signInWithPopup,
-	GoogleAuthProvider,
-	UserCredential,
-	setPersistence,
-	inMemoryPersistence,
-	onAuthStateChanged,
-} from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, UserCredential, setPersistence, inMemoryPersistence, onAuthStateChanged } from "firebase/auth";
 import { UsersModel } from "../../../../@types/users";
 import { UserLogged } from "../../../localStorage";
 import { database } from "../../database";
@@ -21,8 +13,7 @@ const signInWithGoogle = async () => {
 
 				return signInWithPopup(auth, provider)
 					.then((result) => {
-						const credential =
-							GoogleAuthProvider.credentialFromResult(result);
+						const credential = GoogleAuthProvider.credentialFromResult(result);
 						if (credential) {
 							resolve(result);
 						}
@@ -40,7 +31,6 @@ const signInWithGoogle = async () => {
 const verifyUserAuthentication = async () => {
 	return new Promise<boolean>((resolve, reject) => {
 		onAuthStateChanged(auth, (user) => {
-			console.log(user);
 			if (user?.uid) {
 				return resolve(true);
 			} else {
@@ -53,9 +43,7 @@ const verifyUserAuthentication = async () => {
 const createUsers = async (path: string, data: UsersModel.User) => {
 	let itemDb = await database.getItemDb(path);
 	if (itemDb?.list) {
-		const findUser = itemDb.list.find(
-			(_) => _.uuid === UserLogged.info.uuid
-		);
+		const findUser = itemDb.list.find((_) => _?.uid === auth?.currentUser?.uid);
 		if (!findUser?.uuid) {
 			itemDb.list.push(data);
 		}

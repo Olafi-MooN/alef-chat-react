@@ -1,11 +1,5 @@
 import { EmojiInputPickerFunctions } from "./emoji-input-picker.functions";
-import EmojiPicker, {
-	EmojiStyle,
-	Theme,
-	SuggestionMode,
-	SkinTonePickerLocation,
-	EmojiClickData,
-} from "emoji-picker-react";
+import EmojiPicker, { EmojiStyle, Theme, SuggestionMode, SkinTonePickerLocation, EmojiClickData } from "emoji-picker-react";
 
 import "./emoji-input-picker.style.css";
 
@@ -15,8 +9,7 @@ interface IEmojiInputPickerProps {
 }
 
 const EmojiInputPicker = (props: IEmojiInputPickerProps) => {
-	const { openEmojiPicker, setOpenEmojiPicker, setEmojiSelected } =
-		EmojiInputPickerFunctions(props);
+	const { openEmojiPicker, setOpenEmojiPicker, setEmojiSelected } = EmojiInputPickerFunctions(props);
 	return (
 		<>
 			<div className="chat-emoji-action">
@@ -27,9 +20,7 @@ const EmojiInputPicker = (props: IEmojiInputPickerProps) => {
 							autoFocusSearch={false}
 							theme={Theme.DARK}
 							searchDisabled
-							skinTonePickerLocation={
-								SkinTonePickerLocation.SEARCH
-							}
+							skinTonePickerLocation={SkinTonePickerLocation.SEARCH}
 							height={"100%"}
 							width="100%"
 							lazyLoadEmojis={true}
@@ -41,13 +32,8 @@ const EmojiInputPicker = (props: IEmojiInputPickerProps) => {
 						/>
 					</div>
 				)}
-				<button
-					className="chat-emoji-button"
-					onClick={() => setOpenEmojiPicker((prev) => !prev)}
-				>
-					<span className="material-symbols-outlined emoji-icon-add">
-						add_reaction
-					</span>
+				<button className="chat-emoji-button" onClick={() => setOpenEmojiPicker((prev) => !prev)}>
+					<span className="material-symbols-outlined emoji-icon-add">add_reaction</span>
 				</button>
 			</div>
 		</>

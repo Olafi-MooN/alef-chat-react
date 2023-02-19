@@ -1,7 +1,8 @@
 {
-  "bracketSpacing": true,
-  "quoteProps": "as-needed",
-  "singleQuote": false,
-  "tabWidth": 4,
-  "useTabs": true
+	"bracketSpacing": true,
+	"quoteProps": "as-needed",
+	"singleQuote": false,
+	"tabWidth": 4,
+	"useTabs": true,
+	"printWidth": 200
 }

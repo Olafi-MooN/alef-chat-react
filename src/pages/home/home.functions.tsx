@@ -10,14 +10,10 @@ import { auth } from "../../firebase/use-case/auth-firebase";
 const HomeFunctions = () => {
 	const [chatTextValue, setChatTextValue] = React.useState<string>("");
 	const [openSettings, setOpenSettings] = React.useState<boolean>(false);
-	const [openParticipants, setOpenParticipants] =
-		React.useState<boolean>(false);
-	const [participantsList, setParticipantsList] =
-		React.useState<UsersModel.Users>({} as UsersModel.Users);
-	const [actualUserInChat, setActualUserInChat] =
-		React.useState<UsersModel.User>({} as UsersModel.User);
-	const [conversationList, setConversationList] =
-		React.useState<MessagesModel.IMessages>({} as MessagesModel.IMessages);
+	const [openParticipants, setOpenParticipants] = React.useState<boolean>(false);
+	const [participantsList, setParticipantsList] = React.useState<UsersModel.Users>({} as UsersModel.Users);
+	const [actualUserInChat, setActualUserInChat] = React.useState<UsersModel.User>({} as UsersModel.User);
+	const [conversationList, setConversationList] = React.useState<MessagesModel.IMessages>({} as MessagesModel.IMessages);
 	const chatBodyRef = React.useRef<HTMLDivElement>({} as HTMLDivElement);
 
 	useEffect(() => {
@@ -32,12 +28,7 @@ const HomeFunctions = () => {
 
 	const handleGetMessages = useCallback(() => {
 		if (actualUserInChat?.uuid) {
-			ChatFirebase.searchMessages(
-				`chat/${cryptoRelationUUID(
-					actualUserInChat.uuid,
-					UserLogged.info.uuid
-				)}`
-			).then((res) => {
+			ChatFirebase.searchMessages(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info.uuid)}`).then((res) => {
 				setConversationList(res);
 			});
 		}
@@ -48,31 +39,19 @@ const HomeFunctions = () => {
 	}, [handleGetMessages]);
 
 	const onSubmit = (value: string) => {
-		ChatFirebase.insertMessageInChat(
-			`chat/${cryptoRelationUUID(
-				actualUserInChat.uuid,
-				UserLogged.info.uuid
-			)}`,
-			{
-				hour: String(new Date()),
-				message: value,
-				user: {
-					uid: auth?.currentUser?.uid,
-					uuid: UserLogged.info.uuid,
-					name: UserLogged.info.name,
-				},
-			}
-		);
+		ChatFirebase.insertMessageInChat(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info.uuid)}`, {
+			hour: String(new Date()),
+			message: value,
+			user: {
+				uid: auth?.currentUser?.uid,
+				uuid: UserLogged.info.uuid,
+				name: UserLogged.info.name,
+			},
+		});
 	};
 
 	useEffect(() => {
-		database.onListEventMessage(
-			`chat/${cryptoRelationUUID(
-				actualUserInChat.uuid,
-				UserLogged.info.uuid
-			)}`,
-			handleGetMessages
-		);
+		database.onListEventMessage(`chat/${cryptoRelationUUID(actualUserInChat.uuid, UserLogged.info.uuid)}`, handleGetMessages);
 	}, [actualUserInChat]);
 
 	return {

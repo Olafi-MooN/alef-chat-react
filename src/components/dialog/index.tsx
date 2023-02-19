@@ -10,16 +10,8 @@ const Dialog = (props: DialogModel.DialogOptions) => {
 		<>
 			<div className="container-modal">
 				<div className="modal" style={{ width, height }}>
-					<button
-						className="button-close-modal"
-						onClick={onCloseDialog}
-					>
-						<object
-							data={close2x}
-							width="30"
-							height="30"
-							style={{ pointerEvents: "none" }}
-						>
+					<button className="button-close-modal" onClick={onCloseDialog}>
+						<object data={close2x} width="30" height="30" style={{ pointerEvents: "none" }}>
 							{" "}
 						</object>
 					</button>

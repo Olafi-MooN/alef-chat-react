@@ -1,29 +1,29 @@
-.container-modal { 
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  background-color: var(--black-opacity);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container-modal {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	background-color: var(--black-opacity);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.container-modal .modal { 
-  background-color: var(--bg-modal);
-  border-radius: 8px;
-  position: relative;
+.container-modal .modal {
+	background-color: var(--bg-modal);
+	border-radius: 8px;
+	position: relative;
 }
 
-.button-close-modal { 
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 999;
+.button-close-modal {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	z-index: 999;
 }
 
-.button-close-modal object { 
-  cursor: pointer;
+.button-close-modal object {
+	cursor: pointer;
 }

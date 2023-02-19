@@ -12,20 +12,11 @@ interface InputChatProps {
 }
 
 const InputChat = (props: InputChatProps) => {
-	const { onSubmit, value, setValue, emojiSelected, setEmojiSelected } =
-		InputChatFunctions(props);
+	const { onSubmit, value, setValue, emojiSelected, setEmojiSelected } = InputChatFunctions(props);
 	return (
 		<div className="container-chat-form">
-			<textarea
-				className="chat-input-textarea"
-				placeholder="Digite uma mensagem"
-				value={value}
-				onChange={(e) => setValue(e.target.value)}
-			/>
-			<EmojiInputPicker
-				emojiSelected={emojiSelected}
-				setEmojiSelected={setEmojiSelected}
-			/>
+			<textarea className="chat-input-textarea" placeholder="Digite uma mensagem" value={value} onChange={(e) => setValue(e.target.value)} />
+			<EmojiInputPicker emojiSelected={emojiSelected} setEmojiSelected={setEmojiSelected} />
 			<button
 				className="chat-send-button"
 				onClick={() => {

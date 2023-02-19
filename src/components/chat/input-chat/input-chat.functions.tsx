@@ -6,9 +6,7 @@ interface InputChatFunctionsProps extends InputChatProps {}
 
 const InputChatFunctions = (props: InputChatFunctionsProps) => {
 	const { setValue } = props;
-	const [emojiSelected, setEmojiSelected] = React.useState<EmojiClickData>(
-		{} as EmojiClickData
-	);
+	const [emojiSelected, setEmojiSelected] = React.useState<EmojiClickData>({} as EmojiClickData);
 
 	useEffect(() => {
 		if (emojiSelected?.unified) {

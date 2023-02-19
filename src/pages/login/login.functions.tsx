@@ -1,10 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
-import {
-	createUsers,
-	signInWithGoogle,
-} from "../../firebase/use-case/auth-firebase";
+import { createUsers, signInWithGoogle } from "../../firebase/use-case/auth-firebase";
 
 const LoginFunctions = () => {
 	const navigate = useNavigate();

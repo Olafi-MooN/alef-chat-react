@@ -12,9 +12,7 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 					<div className="left-content-config">
 						<h1 className="title config-title">Configurações</h1>
 						<div className="list-items-config">
-							<span className="material-symbols-outlined icons-config">
-								manage_accounts
-							</span>
+							<span className="material-symbols-outlined icons-config">manage_accounts</span>
 							<p className="">Perfil</p>
 						</div>
 					</div>
@@ -26,22 +24,12 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 									backgroundImage: `url(${UserLogged.info.image})`,
 								}}
 							>
-								<input
-									type="file"
-									name="file"
-									id="file"
-									className="image-input-file"
-								/>
-								<label
-									htmlFor="file"
-									className="image-label-file"
-								>
+								<input type="file" name="file" id="file" className="image-input-file" />
+								<label htmlFor="file" className="image-label-file">
 									Alterar imagem
 								</label>
 							</div>
-							<h4 className="title name-config">
-								{UserLogged.info.name}
-							</h4>
+							<h4 className="title name-config">{UserLogged.info.name}</h4>
 						</div>
 					</div>
 				</div>

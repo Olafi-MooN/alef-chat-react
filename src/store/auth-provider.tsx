@@ -1,10 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import React, { useCallback, useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import {
-	auth,
-	verifyUserAuthentication,
-} from "../firebase/use-case/auth-firebase";
+import { auth, verifyUserAuthentication } from "../firebase/use-case/auth-firebase";
 
 interface IAuthContextProps {
 	authorized: boolean;
@@ -18,9 +15,7 @@ const AuthProvider = ({ children }) => {
 
 	return (
 		<>
-			<AuthContext.Provider value={{ authorized, setAuthorized }}>
-				{children}
-			</AuthContext.Provider>
+			<AuthContext.Provider value={{ authorized, setAuthorized }}>{children}</AuthContext.Provider>
 		</>
 	);
 };

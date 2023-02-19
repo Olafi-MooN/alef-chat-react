@@ -28,17 +28,12 @@ const Home = () => {
 	} = HomeFunctions();
 
 	return (
-		<div
-			className={`container-home ${
-				openParticipants ? "no-active-participants" : ""
-			}`}
-		>
+		<div className={`container-home ${openParticipants ? "no-active-participants" : ""}`}>
 			<div className="toolbar">
 				<div className="toolbar-top">
 					<span
 						className="material-symbols-outlined icons-config toolbar-icons menu-btn"
 						onClick={() => {
-							console.log(auth.currentUser);
 							setOpenParticipants((prev) => !prev);
 						}}
 					>
@@ -47,25 +42,14 @@ const Home = () => {
 				</div>
 				<div className="toolbar-bottom">
 					<span className="profile-image-icon">
-						<img
-							className="profile-image-img"
-							src={UserLogged?.info?.image}
-							alt="profile"
-						/>
+						<img className="profile-image-img" src={UserLogged?.info?.image} alt="profile" />
 					</span>
-					<span
-						className="material-symbols-outlined icons-config toolbar-icons settings-btn"
-						onClick={() => setOpenSettings(true)}
-					>
+					<span className="material-symbols-outlined icons-config toolbar-icons settings-btn" onClick={() => setOpenSettings(true)}>
 						settings
 					</span>
 				</div>
 			</div>
-			<div
-				className={`content-users ${
-					openParticipants ? "no-active" : ""
-				}`}
-			>
+			<div className={`content-users ${openParticipants ? "no-active" : ""}`}>
 				<div className="content-users-title">
 					<h1 className="title">Participantes Ativos</h1>
 				</div>
@@ -73,12 +57,7 @@ const Home = () => {
 					{participantsList?.list
 						?.filter((user) => user.uuid !== UserLogged.info?.uuid)
 						.map((user) => (
-							<ProfileList
-								key={user.uuid}
-								user={user}
-								actualUserInChat={actualUserInChat}
-								setActualUserInChat={setActualUserInChat}
-							/>
+							<ProfileList key={user.uuid} user={user} actualUserInChat={actualUserInChat} setActualUserInChat={setActualUserInChat} />
 						))}
 				</div>
 			</div>
@@ -90,54 +69,25 @@ const Home = () => {
 								<div className="profile">
 									<ProfileChat user={actualUserInChat} />
 								</div>
-								<button
-									className="close"
-									onClick={() =>
-										setActualUserInChat(
-											{} as UsersModel.User
-										)
-									}
-								>
-									<object
-										data={close2x}
-										width="30"
-										height="30"
-										style={{ pointerEvents: "none" }}
-									>
+								<button className="close" onClick={() => setActualUserInChat({} as UsersModel.User)}>
+									<object data={close2x} width="30" height="30" style={{ pointerEvents: "none" }}>
 										{" "}
 									</object>
 								</button>
 							</div>
 							<div className="chat-body" ref={chatBodyRef}>
-								{conversationList?.messages?.map(
-									(message, i) => (
-										<ChatBlockRow
-											key={i}
-											hour={message.hour}
-											message={message?.message}
-											user={message?.user}
-										/>
-									)
-								)}
+								{conversationList?.messages?.map((message, i) => (
+									<ChatBlockRow key={i} hour={message.hour} message={message?.message} user={message?.user} />
+								))}
 							</div>
 							<div className="chat-footer">
-								<InputChat
-									onSubmit={onSubmit}
-									setValue={setChatTextValue}
-									value={chatTextValue}
-								/>
+								<InputChat onSubmit={onSubmit} setValue={setChatTextValue} value={chatTextValue} />
 							</div>
 						</>
 					)}
 				</div>
 			</div>
-			{openSettings && (
-				<SettingsDialog
-					height="80%"
-					width="80%"
-					onCloseDialog={() => setOpenSettings(false)}
-				/>
-			)}
+			{openSettings && <SettingsDialog height="80%" width="80%" onCloseDialog={() => setOpenSettings(false)} />}
 		</div>
 	);
 };

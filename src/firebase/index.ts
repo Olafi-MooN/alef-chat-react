@@ -7,5 +7,4 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const dbRef = ref(db);
 
-
-export { app, db, dbRef }
+export { app, db, dbRef };
