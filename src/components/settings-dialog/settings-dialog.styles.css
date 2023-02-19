@@ -58,7 +58,7 @@
   color: var(--white);
 }
 
-.image-config-edit,
+
 .profile-config {
   width: 100%;
   height: 300px;
@@ -81,13 +81,14 @@
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: flex-end;
   transition: all ease-in 0.3s;
 }
 
 .image-input-file { 
   visibility: hidden;
+  width: 0;
 }
 
 .image-label-file { 

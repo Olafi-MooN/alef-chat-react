@@ -9,6 +9,7 @@ import { ChatBlockRow } from "../../components/chat/chat-block-row/chat-block-ro
 import { InputChat } from "../../components/chat/input-chat/input-chat";
 
 import "./home.style.css";
+import { auth } from "../../firebase/use-case/auth-firebase";
 
 const Home = () => {
 	const {
@@ -36,7 +37,10 @@ const Home = () => {
 				<div className="toolbar-top">
 					<span
 						className="material-symbols-outlined icons-config toolbar-icons menu-btn"
-						onClick={() => setOpenParticipants((prev) => !prev)}
+						onClick={() => {
+							console.log(auth.currentUser);
+							setOpenParticipants((prev) => !prev);
+						}}
 					>
 						menu
 					</span>
@@ -109,6 +113,7 @@ const Home = () => {
 									(message, i) => (
 										<ChatBlockRow
 											key={i}
+											hour={message.hour}
 											message={message?.message}
 											user={message?.user}
 										/>

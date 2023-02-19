@@ -3,6 +3,7 @@ import { UserLogged } from "../../../localStorage";
 import "./chat-block-row.style.css";
 
 interface IChatBlockRowProps {
+	hour: string;
 	user: UsersModel.User;
 	message: string;
 }
@@ -16,7 +17,7 @@ const formatDate = (date) => {
 };
 
 const ChatBlockRow = (props: IChatBlockRowProps) => {
-	const { user, message } = props;
+	const { user, message, hour } = props;
 	return (
 		<div
 			className={`chat-block-row ${
@@ -27,7 +28,7 @@ const ChatBlockRow = (props: IChatBlockRowProps) => {
 				{user?.uuid === UserLogged?.info?.uuid
 					? "Você"
 					: user?.name ?? "username"}{" "}
-				- {formatDate(new Date())}
+				- {formatDate(new Date(hour))}
 			</div>
 			<div className="chat-block">
 				{message ?? "example message add in chat"}

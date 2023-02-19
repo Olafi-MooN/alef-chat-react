@@ -1,13 +1,28 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Routes as Switch, BrowserRouter } from "react-router-dom";
 import { Home } from "../pages/home";
+import { Login } from "../pages/login";
+import { AuthProvider, RequireAuth } from "../store/auth-provider";
 
-const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Home />,
-	},
-]);
-
-const Routes = () => <RouterProvider router={router} />;
+const Routes = () => {
+	return (
+		<>
+			<BrowserRouter>
+				<AuthProvider>
+					<Switch>
+						<Route
+							path="/"
+							element={
+								<RequireAuth>
+									<Home />
+								</RequireAuth>
+							}
+						></Route>
+						<Route path="/login" element={<Login />}></Route>
+					</Switch>
+				</AuthProvider>
+			</BrowserRouter>
+		</>
+	);
+};
 
 export { Routes };

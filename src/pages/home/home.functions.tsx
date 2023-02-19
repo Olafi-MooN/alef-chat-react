@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useLayoutEffect } from "react";
-import ChatFirebase from "../../firebase/chat-firebase";
+import ChatFirebase from "../../firebase/use-case/chat-firebase";
 import { UsersModel } from "../../../@types/users";
 import { MessagesModel } from "../../../@types/messages";
 import { UserLogged } from "../../localStorage";
 import { cryptoRelationUUID } from "../../utils";
-import { onListEventMessage } from "../../firebase";
+import { database } from "../../firebase/database";
+import { auth } from "../../firebase/use-case/auth-firebase";
 
 const HomeFunctions = () => {
 	const [chatTextValue, setChatTextValue] = React.useState<string>("");
@@ -56,6 +57,7 @@ const HomeFunctions = () => {
 				hour: String(new Date()),
 				message: value,
 				user: {
+					uid: auth?.currentUser?.uid,
 					uuid: UserLogged.info.uuid,
 					name: UserLogged.info.name,
 				},
@@ -64,7 +66,7 @@ const HomeFunctions = () => {
 	};
 
 	useEffect(() => {
-		onListEventMessage(
+		database.onListEventMessage(
 			`chat/${cryptoRelationUUID(
 				actualUserInChat.uuid,
 				UserLogged.info.uuid
