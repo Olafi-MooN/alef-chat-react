@@ -1,5 +1,6 @@
 import React from "react";
 import { DialogModel } from "../../../@types/dialog";
+import { UserLogged } from "../../localStorage";
 import Dialog from "../dialog";
 import "./settings-dialog.styles.css";
 
@@ -19,7 +20,12 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 					</div>
 					<div className="right-content-config">
 						<div className="profile-config">
-							<div className="image-config-edit">
+							<div
+								className="image-config-edit"
+								style={{
+									backgroundImage: `url(${UserLogged.info.image})`,
+								}}
+							>
 								<input
 									type="file"
 									name="file"
@@ -34,7 +40,7 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 								</label>
 							</div>
 							<h4 className="title name-config">
-								Alef Santos Soares
+								{UserLogged.info.name}
 							</h4>
 						</div>
 					</div>
