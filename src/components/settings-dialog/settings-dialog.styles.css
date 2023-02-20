@@ -82,6 +82,7 @@
 	align-items: end;
 	justify-content: flex-end;
 	transition: all ease-in 0.3s;
+	cursor: pointer;
 }
 
 .image-input-file {

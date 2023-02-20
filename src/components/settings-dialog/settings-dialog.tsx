@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DialogModel } from "../../../@types/dialog";
 import { UserLogged } from "../../localStorage";
 import Dialog from "../dialog";
@@ -6,6 +6,7 @@ import { SettingDialogFunctions } from "./settings-dialog.functions";
 import "./settings-dialog.styles.css";
 
 const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
+	const [openImageZoom, setOpenImageZoom] = useState<boolean>(false);
 	const { updateImageUser, actualImage } = SettingDialogFunctions();
 	return (
 		<>
@@ -25,6 +26,7 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 								style={{
 									backgroundImage: `url(${actualImage || UserLogged?.info()?.image})`,
 								}}
+								onClick={() => setOpenImageZoom((prev) => !prev)}
 							>
 								<input type="file" name="file" id="file" className="image-input-file" onChange={(e) => updateImageUser(e)} />
 								<label htmlFor="file" className="image-label-file">
@@ -36,6 +38,19 @@ const SettingsDialog = (props: DialogModel.SettingsDialogProps) => {
 					</div>
 				</div>
 			</Dialog>
+			{openImageZoom && (
+				<Dialog height="90%" width="60%" onCloseDialog={() => setOpenImageZoom((prev) => !prev)}>
+					<div
+						className="background-filter"
+						style={{
+							background: "black",
+							position: "relative",
+							filter: "blur(0px)",
+						}}
+					></div>
+					<img className="profile-image-full-size" src={(actualImage || UserLogged?.info()?.image) as string} alt="img-profile" />
+				</Dialog>
+			)}
 		</>
 	);
 };
