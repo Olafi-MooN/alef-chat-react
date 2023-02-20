@@ -1,11 +1,14 @@
 .container-modal {
 	width: 100vw;
 	height: 100vh;
+	top: 0;
+	left: 0;
 	position: fixed;
 	background-color: var(--black-opacity);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 1000000;
 }
 
 .container-modal .modal {

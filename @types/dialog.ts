@@ -4,10 +4,11 @@ namespace DialogModel {
 		width: string;
 		height: string;
 		icon?: string;
+		modalStyle?: React.CSSProperties
 		onCloseDialog?: () => void;
 	}
 
-	export interface SettingsDialogProps extends DialogOptions {}
+	export interface SettingsDialogProps extends DialogOptions { }
 }
 
 export type { DialogModel };
