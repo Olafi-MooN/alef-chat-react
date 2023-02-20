@@ -43,7 +43,7 @@ const Home = () => {
 					</div>
 					<div className="toolbar-bottom">
 						<span className="profile-image-icon">
-							<img className="profile-image-img" src={UserLogged?.info()?.image as string} alt="profile" />
+							<img className="profile-image-img" src={UserLogged?.info()?.image as string} alt="profile" onClick={() => setOpenSettings(true)} />
 						</span>
 						<span className="material-symbols-outlined icons-config toolbar-icons settings-btn" onClick={() => setOpenSettings(true)}>
 							settings
