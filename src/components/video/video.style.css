@@ -4,3 +4,7 @@
   background-color: black;
   display: block;
 }
+
+.container-video .plyr--video {
+  height: 100%;
+}
