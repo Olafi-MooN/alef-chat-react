@@ -1,9 +1,10 @@
 import { LoginFunctions } from "./login.functions";
 import "./login.style.css";
 import GoogleIcon from "../../assets/images/google.png";
+import MovieIcon from "../../assets/images/movie.svg";
 
 const Login = () => {
-	const { handleLogin } = LoginFunctions();
+	const { handleLogin, handleOpenFilms } = LoginFunctions();
 	return (
 		<div className="container-login">
 			<div className="login-box">
@@ -17,6 +18,10 @@ const Login = () => {
 					<button type="button" id="button-login" className="button-form" onClick={handleLogin}>
 						<img src={GoogleIcon} alt="google" className="google-icon-login" />
 						Entrar com o Google
+					</button>
+					<button type="button" id="button-login" className="button-form" onClick={handleOpenFilms}>
+						<img src={MovieIcon} alt="google" className="google-icon-login" />
+						Apenas assistir filmes
 					</button>
 				</form>
 			</div>

@@ -1,0 +1,19 @@
+.container-films {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr;
+	height: 100vh;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.content-films {
+	width: 100%;
+	padding: 20px;
+
+}
+
+.content-films h2 {
+	color: var(--gray);
+	margin: 0px 0 12px;
+}

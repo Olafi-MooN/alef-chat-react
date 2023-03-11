@@ -20,8 +20,13 @@ const LoginFunctions = () => {
 		}
 	};
 
+	const handleOpenFilms = () => {
+		navigate("/films");
+	};
+
 	return {
 		handleLogin,
+		handleOpenFilms,
 	};
 };
 
