@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route, Routes as Switch, BrowserRouter } from "react-router-dom";
 import { Films } from "../pages/films";
 import { Home } from "../pages/home";

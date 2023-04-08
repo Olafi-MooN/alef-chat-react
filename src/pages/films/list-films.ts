@@ -10,6 +10,14 @@ const listOfFilms = () => {
 			thumb: "https://vizer.in/content/movies/posterPt/342/20817.webp",
 			year: "2004",
 		},
+		{
+			genre: "Intelectual",
+			title: "O homem que viu o infinito",
+			imdbRating: "6.8",
+			link: "//streamtape.com/get_video?id=9kG90aZLMAua2OQ&amp;expires=1680994570&amp;ip=FRuOExyOR0gN&amp;token=iYBVVaXFaYtO&amp;stream=1",
+			thumb: "https://thumb.tapecontent.net/thumb/9kG90aZLMAua2OQ/78ZXp1mjzziAZpy.jpg",
+			year: "2004",
+		},
 	] as ICardFilms[];
 };
 

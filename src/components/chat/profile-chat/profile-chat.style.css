@@ -12,10 +12,27 @@
 	color: var(--green);
 }
 
+.profile-status.offline {
+position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--red);
+}
+
 .profile-status-circle {
 	background-color: var(--green);
 	width: 10px;
 	height: 10px;
 	border-radius: 100%;
 	cursor: pointer;
+}
+
+
+.profile-status-circle.offline { 
+	background-color: var(--red);
+		width: 10px;
+		height: 10px;
+		border-radius: 100%;
+		cursor: pointer;
 }

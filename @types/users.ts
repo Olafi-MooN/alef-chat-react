@@ -4,6 +4,7 @@ namespace UsersModel {
 		name: string;
 		uuid: string;
 		uid?: string;
+		status?: boolean;
 	}
 
 	export interface Users {
